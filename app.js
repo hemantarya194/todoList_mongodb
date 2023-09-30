@@ -141,6 +141,7 @@ app.post("/delete", async (req, res) => {
     const deletedItem = await Item.findByIdAndRemove(checkedboxItem);
 
     if (deletedItem) {
+      console.log("Item succesfully deleted to root page")
       res.redirect("/");
     } 
 
@@ -151,6 +152,7 @@ app.post("/delete", async (req, res) => {
         { $pull: { items: {_id : checkedboxItem} } }
       );
       if (updatedList) {
+        console.log("Item succesfully deleted to the list")
         res.redirect("/" + listName)
         
       } else {
